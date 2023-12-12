@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Merge to Main and Deploy
+        if: success()
+        run: |
+          git checkout main
+          git merge --no-ff ${{ github.sha }}
+          # Additional steps for deployment to surge.sh
+
+        - name: Deploy to Surge
+          run: surge ./ --domain 20220018-final.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        
+        - name: Visit the website
+          run: curl 20220018.surge.sh
