@@ -30,7 +30,7 @@ jobs:
           # git merge --no-ff ${{ github.sha }}
 
       - name: Deploy to Surge
-        run: surge ./ --domain 20220018-final.surge.sh --token $SURGE_TOKEN
+        run: surge ./ --domain 20220018-final.surge.sh --token ${{ env.SURGE_TOKEN }}
         
       - name: Visit the website
         run: curl 20220018-final.surge.sh
