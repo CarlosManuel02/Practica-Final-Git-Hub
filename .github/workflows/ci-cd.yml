@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Install Surge
-      run: npm install --global surge
+        run: npm install --global surge
 
       - name: Run Tests
         run: npm test
