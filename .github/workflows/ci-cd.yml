@@ -20,9 +20,9 @@ jobs:
       - name: Merge to Main and Deploy
         if: success()
         run: |
-          git checkout main
-          git merge --no-ff ${{ github.sha }}
-          # Additional steps for deployment to surge.sh
+          # git checkout main
+          # git merge --no-ff ${{ github.sha }}
+          # # Additional steps for deployment to surge.sh
 
         - name: Deploy to Surge
           run: surge ./ --domain 20220018-final.surge.sh --token ${{ secrets.SURGE_TOKEN }}
